@@ -1,0 +1,22 @@
+{
+  "name": "cfl-tailgate-backend",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vrunoa/cfl-tailgate-backend.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vrunoa/cfl-tailgate-backend/issues"
+  },
+  "homepage": "https://github.com/vrunoa/cfl-tailgate-backend#readme",
+  "dependencies": {
+    "parse": "^1.6.9"
+  }
+}
