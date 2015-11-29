@@ -15,5 +15,55 @@ angular.module("CFLTailgateApp", [])
 }])
 
 .controller("ChallengeController", ['$scope', function($scope){
-   
+  
+  $scope.state = "notavail";
+  /*
+  $scope.current =  {"q": "How many teams are in the CFL?", a: [{"answer":6,"id":"Ux46LXCRC7"},{"answer":7,"id":"QBifKV318K"},{"answer":9,"id":"HNkwoDvgXY"},{"answer":13,"id":"8RZwXAvryk"}]};
+  $scope.a = {"answer":7,"id":"QBifKV318K"};
+ 
+  */
+  $scope.users = [
+    {name:"KateOK",t:0.01}, 
+    {name:"Willy", t:0.6}, 
+    {name:"Pippa",t:0.4}
+  ]
+
+  socket.on("prepare", function(){
+    $scope.$apply(function(){
+      $scope.state = "prepare";
+    });
+  })
+  
+  socket.on("launch", function(){
+    $scope.$apply(function(){
+      $scope.state = "waiting";
+    })
+  })
+
+  socket.on("show question", function(q){
+    $scope.$apply(function(){
+      $scope.current = q;
+      $scope.state = "question";
+    });
+  })
+
+  socket.on("finish question", function(r){
+    $scope.$apply(function(){
+      $scope.state = "results";
+      $scope.a = {};
+      for(var i=0;i<$scope.current.a.length;i++){
+        var an = $scope.current.a[i];
+        if(an.id = $scope.current.c) {
+          $scope.a = an;
+        }
+      }
+    });
+  })
+
+  socket.on("finish challenge", function(){
+    console.log("finish challenge");
+    $scope.$apply(function(){
+      $scope.state = "finished"
+    });
+  })
 }])

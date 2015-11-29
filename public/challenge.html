@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" ng-app="CFLTailgateApp">
+<head>
+  <meta charset="utf-8">
+  <script src="/socket.io/socket.io.js"></script>
+
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+   
+  <!-- import jquery -->
+  <!-- workaround for jquery to be attached on electronjs window -->
+  <script>
+    try { 
+      window.$ = window.jQuery = require('jquery/dist/jquery.min.js');
+    }catch(e){}
+  </script>
+  <script src="jquery/dist/jquery.min.js"></script>
+  <!-- import jquery -->
+
+  <script src="angular/angular.min.js"></script>
+  <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+
+<body ng-controller="ChallengeController">
+
+  <div class="toolbar">CFL Tailgate Challenge</div>
+
+         
+        <div class="question-notavail" ng-show="state == 'notavail'">
+          <img src="sorry.png" /><br />
+          <p>...no challenges are available right now. Come back later!</p>
+        </div>
+
+        <div class="question-waiting" ng-show="state == 'waiting'">
+          <p>waiting for challengers...</p>
+          <div class="preloader">
+            <img src="362.GIF" />
+            <p class="w-timer all-timers">10</p>
+          </div>
+        </div>
+
+        <div class="question-prepare" ng-show="state == 'prepare'">
+          <p>Get ready, the next question starts in</p>
+          <div class="preloader">
+            <img src="362.GIF" />
+            <p class="p-timer all-timers">10</p>
+          </div>
+
+        </div>
+
+        <div class="question-container" ng-show="state == 'question'">
+          <div class="question-timer"></div>
+          <div class="preloader">
+            <img src="362.GIF" />
+            <p class="p-timer all-timers">10</p>
+          </div>
+          <p class="current-question"><img src="questionicon.png" class="question-icon"/>{{current.q}}</p>
+          <ul>
+            <li ng-repeat="a in current.a">
+            <p><img src="unselectedradio.png" class="answer-radio"/>{{a.answer}}</p>
+            </li>
+          </ul>
+        </div>
+
+        
+        <div class="question-result" ng-show="state == 'results'">
+          <table cellpadding="0" cellspacing="0" width="100%">
+            <tr><td>
+                <p class="fastest-title">Results</p>
+
+          <p class="current-question"><img src="questionicon.png" class="question-icon"/>{{current.q}}</p>
+          <p><img src="selectedradio.png" class="answer-radio"/>{{a.answer}}</p>
+        </td><td>
+          <div class="fastest">
+            <p class="fastest-title">Fastests</p>
+            <p class="fastest-item"><img src="userprofile.png" class="fastest-profile p1"/>{{users[0].name}}<span class="fastest-time">({{users[0].t}}s.)</span></p>
+            <p class="fastest-item"><img src="william.png" class="fastest-profile p2"/>{{users[1].name}}<span class="fastest-time">({{users[1].t}}s.)</span></p>
+            <p class="fastest-item"><img src="pippa.png" class="fastest-profile p3"/>{{users[2].name}}<span class="fastest-time">({{users[2].t}}s.)</span></p>
+        </td></tr>
+          </table>
+
+        </div>
+
+        <div class="question-finished" ng-show="state == 'finished'">
+          <p>Don't miss the next challenge in the halftime</p>
+          <p class="fastest-title">Podium</p>
+          <table width="50%" style="margin-left:auto;margin-right:auto;">
+            <tr>
+              <td>
+                <p><img src="william.png" class="fastest-profile p2b"/><br />{{users[1].name}}</p>
+              </td>
+              <td>
+                <p><img src="userprofile.png" class="fastest-profile p1b"/><br />{{users[0].name}}</p>
+              </td>
+              <td>
+                <p ><img src="pippa.png" class="fastest-profile p3b"/><br />{{users[2].name}}</p>
+              </td>
+            </tr>
+          </table>
+          <p style="font-weight:100; margin-top:20px">Couldnt play ? Download the CFLTailgate app from <b>cfltailgate.app</b></p>
+
+        </div>
+   
+      </div>
+  
+  </body>
+</html>

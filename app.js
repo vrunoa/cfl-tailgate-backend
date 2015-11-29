@@ -78,7 +78,9 @@ io.on('connection', function(socket){
 
   socket.on('launch', function(){
     console.log("launch");
-    launchChallenge(socket);
+    setTimeout(function(){
+      launchChallenge(socket);
+    }, 2000)
   })
     
 })

@@ -1,7 +1,7 @@
 body{
   margin:0px;
   padding:0px;
-  background:#f7f7f7;
+  background:#fff;
 }
 
 .toolbar{
@@ -56,3 +56,81 @@ li{
   margin-left:15px !important;
 }
 
+.question-notavail,
+.question-waiting,
+.question-prepare,
+.question-container,
+.question-finished
+{
+  text-align:center;
+  font-size:2em;
+  margin-top:30px;
+}
+
+.question-result{
+  text-align:center;
+  font-size:2em;
+  margin-top:30px;
+}
+
+.question-result td{
+  vertical-align:top;
+}
+
+.question-finished td{
+  vertical-align:center !important;
+}
+
+.all-timers{
+  font-weight: 100 !important;
+  position: relative !important;
+  top: -80px !important;
+}
+
+.question-icon{
+  width:100px;
+}
+
+.answer-radio{
+  width:60px;
+}
+
+.fastest-item{
+  width:300px !important;
+  text-align:left !important;
+}
+
+.fastest-time{
+  font-size:0.8em;
+  font-weight: 200;
+}
+
+.fastest-profile.p1{
+  width:100px;
+}
+
+.fastest-profile.p1b{
+  width:180px;
+}
+
+.fastest-profile.p2{
+  width:80px;
+}
+
+.fastest-profile.p2b{
+  width:100px;
+}
+
+.fastest-profile.p3{
+  width:60px;
+}
+
+.fastest-profile.p3b{
+  width:60px;
+}
+
+
+.fastest-title{
+  font-size:1.5em;
+  font-weight:100;
+}
