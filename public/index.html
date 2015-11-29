@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" ng-app="CFLTailgateApp">
+<head>
+  <meta charset="utf-8">
+  <script src="/socket.io/socket.io.js"></script>
+
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  
+   
+  <!-- import jquery -->
+  <!-- workaround for jquery to be attached on electronjs window -->
+  <script>
+    try { 
+      window.$ = window.jQuery = require('jquery/dist/jquery.min.js');
+    }catch(e){}
+  </script>
+  <script src="jquery/dist/jquery.min.js"></script>
+  <!-- import jquery -->
+
+  <script src="angular/angular.min.js"></script>
+  <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+
+</head>
+
+<body ng-controller="PanelController">
+
+  <div class="toolbar">CFL Tailgate Panel</div>
+
+  <div class="tabs">
+    <ul class="nav nav-tabs">
+      <li role="presentation"><a href="#">Admin</a></li>
+      <li role="presentation"><a href="#">Users</a></li>
+      <li role="presentation"><a href="#">Teams</a></li>
+      <li role="presentation"><a href="#">Games</a></li>
+      <li role="presentation"><a href="#">Trivias</a></li>
+      <li role="presentation" class="active"><a href="#">Challenges</a></li>
+      <li role="presentation"><a href="#">Bets</a></li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-1">
+        <button class="btn button">New</button>
+        <button class="btn button selected">Edit</button>
+        <button class="btn button">Ongoing</button>
+        <button class="btn button">Stats</button>
+        <button class="btn button">History</button>
+      </div>
+      <div class="col-md-offset-1 col-md-9">
+          <p class="np"><b>Questions</b></p>
+          <ul class="questions-list">
+            <li class="question" ng-repeat="q in questions">
+              <p>{{q.q}}</p>
+              <ul>
+                <li class="answer" ng-repeat="a in q.a">
+                  <p>* {{a.answer}}</p>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div class="buttons">
+            <button class="btn button">Add question</button>
+            <button class="btn button">Edit question</button>
+            <button class="btn button">Remove question</button>
+            <button class="btn button">Change order</button>
+            <button class="btn button" ng-click="launch()">Launch challenge</button>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+  </body>
+</html>

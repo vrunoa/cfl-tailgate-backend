@@ -1,0 +1,58 @@
+body{
+  margin:0px;
+  padding:0px;
+  background:#f7f7f7;
+}
+
+.toolbar{
+  text-align:center;
+  color:#fff;
+  background: #E93517;
+  font-size:1.2em;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+.menu {
+  background:#222;
+  color:#fff;
+  float:left;
+  padding:12px 30px;
+  margin-right:20px;
+}
+ul, .np{
+  margin:0px;
+  padding:0px;
+}
+li{
+  list-style-type:none;
+  cursor:pointer;
+  padding-top:10px;
+}
+
+.container{
+  margin:10px;
+}
+
+.button{
+  margin-bottom:10px;
+  min-width:100px;
+}
+
+.button.selected{
+  background-color:#E93517 !important;
+  color:#fff !important;
+}
+
+.questions-list{
+  padding:10px;
+}
+
+.buttons {
+}
+
+.answer{
+  padding:0px !important;
+  margin:0px !important;
+  margin-left:15px !important;
+}
+
