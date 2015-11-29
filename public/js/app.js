@@ -5,6 +5,7 @@ angular.module("CFLTailgateApp", [])
 .controller("PanelController", ['$scope', function($scope){
   $scope.launch = function(){
     socket.emit("launch");
+    window.open("http://localhost:3000/challenge.html");
   }
   $scope.questions = [
     {"q": "How many teams are in the CFL?", a: [{"answer":6,"id":"Ux46LXCRC7"},{"answer":7,"id":"QBifKV318K"},{"answer":9,"id":"HNkwoDvgXY"},{"answer":13,"id":"8RZwXAvryk"}]},
@@ -17,6 +18,8 @@ angular.module("CFLTailgateApp", [])
 .controller("ChallengeController", ['$scope', function($scope){
   
   $scope.state = "notavail";
+  $scope.intervalId;
+  $scope.interval;
   /*
   $scope.current =  {"q": "How many teams are in the CFL?", a: [{"answer":6,"id":"Ux46LXCRC7"},{"answer":7,"id":"QBifKV318K"},{"answer":9,"id":"HNkwoDvgXY"},{"answer":13,"id":"8RZwXAvryk"}]};
   $scope.a = {"answer":7,"id":"QBifKV318K"};
@@ -30,24 +33,58 @@ angular.module("CFLTailgateApp", [])
 
   socket.on("prepare", function(){
     $scope.$apply(function(){
+      clearInterval($scope.intervalId);
       $scope.state = "prepare";
+      $scope.interval = 3;
+      $scope.intervalId = setInterval(function(){
+        if($scope.interval == 0) {
+          clearInterval($scope.intervalId);
+          return;
+        }
+        $scope.$apply(function(){
+          $scope.interval--;
+        })
+      }, 1000)
     });
   })
   
   socket.on("launch", function(){
+    clearInterval($scope.intervalId);
     $scope.$apply(function(){
       $scope.state = "waiting";
+      $scope.interval = 10;
+      $scope.intervalId = setInterval(function(){
+        if($scope.interval == 0) {
+          clearInterval($scope.intervalId);
+          return;
+        }
+        $scope.$apply(function(){
+          $scope.interval--;
+        })
+      }, 1000)
     })
   })
 
   socket.on("show question", function(q){
+    clearInterval($scope.intervalId);
     $scope.$apply(function(){
       $scope.current = q;
       $scope.state = "question";
+      $scope.interval = 10;
+      $scope.intervalId = setInterval(function(){
+        if($scope.interval == 0) {
+          clearInterval($scope.intervalId);
+          return;
+        }
+        $scope.$apply(function(){
+          $scope.interval--;
+        })
+      }, 1000)
     });
   })
 
   socket.on("finish question", function(r){
+    clearInterval($scope.intervalId);
     $scope.$apply(function(){
       $scope.state = "results";
       $scope.a = {};
@@ -61,6 +98,7 @@ angular.module("CFLTailgateApp", [])
   })
 
   socket.on("finish challenge", function(){
+    clearInterval($scope.intervalId);
     console.log("finish challenge");
     $scope.$apply(function(){
       $scope.state = "finished"

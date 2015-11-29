@@ -27,7 +27,6 @@
 
   <div class="toolbar">CFL Tailgate Challenge</div>
 
-         
         <div class="question-notavail" ng-show="state == 'notavail'">
           <img src="sorry.png" /><br />
           <p>...no challenges are available right now. Come back later!</p>
@@ -37,7 +36,7 @@
           <p>waiting for challengers...</p>
           <div class="preloader">
             <img src="362.GIF" />
-            <p class="w-timer all-timers">10</p>
+            <p class="w-timer all-timers">{{interval}}</p>
           </div>
         </div>
 
@@ -45,7 +44,7 @@
           <p>Get ready, the next question starts in</p>
           <div class="preloader">
             <img src="362.GIF" />
-            <p class="p-timer all-timers">10</p>
+            <p class="p-timer all-timers">{{interval}}</p>
           </div>
 
         </div>
@@ -54,7 +53,7 @@
           <div class="question-timer"></div>
           <div class="preloader">
             <img src="362.GIF" />
-            <p class="p-timer all-timers">10</p>
+            <p class="p-timer all-timers">{{interval}}</p>
           </div>
           <p class="current-question"><img src="questionicon.png" class="question-icon"/>{{current.q}}</p>
           <ul>
